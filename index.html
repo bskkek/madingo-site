@@ -102,8 +102,6 @@ footer{border-top:1px solid var(--line);padding:34px 0;text-align:center;color:v
 footer a{color:var(--orange2)}
 .foot-brand{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;color:var(--text);margin-bottom:8px}
 .foot-brand img{width:22px;height:22px;border-radius:6px}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.reveal.on{opacity:1;transform:none}
 </style>
 </head>
 <body>
@@ -265,8 +263,6 @@ function setLang(l){
 }
 setLang((navigator.language||"ar").toLowerCase().startsWith("ru")?"ru":"ar");
 document.getElementById("langBtn").onclick=()=>setLang(next);
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>

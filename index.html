@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madingo — منصة المسابقات التفاعلية لطلاب МАДИ</title>
+<meta name="description" content="Madingo: حوّل أي محاضرة إلى أسئلة اختبار بالذكاء الاصطناعي والعب مسابقات مباشرة مع زملائك. مجاني لطلاب МАДИ.">
+<meta property="og:title" content="Madingo — منصة المسابقات التفاعلية لطلاب МАДИ">
+<meta property="og:description" content="حوّل أي محاضرة إلى أسئلة بالذكاء الاصطناعي والعب Arena مع زملائك. مجاني.">
+<meta property="og:image" content="assets/dusk.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/icon512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1a30; --navy2:#0f2547; --card:rgba(255,255,255,.055); --line:rgba(255,255,255,.12);
+  --orange:#ff8a2b; --orange2:#ffb36b; --blue:#3f8cff; --text:#f2f6fc; --muted:#a9b8cf;
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope','Cairo',sans-serif;background:var(--navy);color:var(--text);line-height:1.7;overflow-x:hidden}
+[dir="rtl"] body{font-family:'Cairo','Manrope',sans-serif}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* header */
+header{position:fixed;top:0;right:0;left:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,26,48,.72);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:26px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.3px}
+.brand img{width:34px;height:34px;border-radius:9px}
+.brand .dot{color:var(--orange)}
+.nav .links{display:flex;gap:22px;margin-inline-start:auto;font-size:14.5px;color:var(--muted)}
+.nav .links a:hover{color:var(--text)}
+.langbtn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:7px 16px;font:inherit;font-size:13.5px;cursor:pointer;transition:.2s}
+.langbtn:hover{border-color:var(--orange);color:var(--orange2)}
+@media(max-width:720px){.nav .links{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:14px;padding:13px 26px;font-weight:700;font-size:16px;transition:.2s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,var(--orange),#ff6a00);color:#fff;box-shadow:0 10px 30px rgba(255,138,43,.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(255,138,43,.45)}
+.btn-ghost{background:var(--card);border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange2)}
+
+/* hero */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;text-align:center;padding:120px 0 80px}
+.hero .bg{position:absolute;inset:0;background:url('assets/dusk.jpg') center/cover no-repeat}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,48,.78) 0%,rgba(10,26,48,.9) 55%,var(--navy) 100%)}
+.hero .wrap{position:relative;z-index:2}
+.hero .emblem{width:96px;height:96px;border-radius:24px;box-shadow:0 12px 40px rgba(0,0,0,.45);margin-bottom:22px}
+.hero h1{font-size:clamp(30px,5.4vw,52px);font-weight:800;line-height:1.3;margin-bottom:14px}
+.hero h1 .hl{color:var(--orange)}
+.hero p.sub{max-width:640px;margin:0 auto 30px;color:var(--muted);font-size:clamp(15px,2.2vw,18.5px)}
+.hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.badge{font-size:13px;color:var(--muted);border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px}
+
+/* sections */
+section{padding:78px 0}
+.eyebrow{display:inline-block;color:var(--orange);font-weight:700;font-size:14px;letter-spacing:1px;margin-bottom:10px}
+h2{font-size:clamp(24px,3.6vw,34px);font-weight:800;margin-bottom:10px}
+.lead{color:var(--muted);max-width:620px;margin-bottom:40px}
+.center{text-align:center}.center .lead{margin-inline:auto}
+
+/* features */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;transition:.25s}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,138,43,.4);background:rgba(255,255,255,.08)}
+.card .ico{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;background:linear-gradient(135deg,rgba(255,138,43,.2),rgba(63,140,255,.2));border:1px solid var(--line)}
+.card h3{font-size:18px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:14.5px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;counter-reset:st}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;position:relative}
+.step::before{counter-increment:st;content:"0" counter(st);position:absolute;top:-16px;inset-inline-start:20px;background:linear-gradient(135deg,var(--orange),#ff6a00);color:#fff;font-weight:800;font-size:14px;border-radius:10px;padding:5px 12px;box-shadow:0 6px 18px rgba(255,106,0,.35)}
+.step h3{font-size:16.5px;margin:8px 0 6px}
+.step p{color:var(--muted);font-size:14px}
+
+/* stories strip */
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.strip figure{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--navy2)}
+.strip img{display:block;width:100%;transition:.3s}
+.strip figure:hover img{transform:scale(1.03)}
+
+/* download */
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;max-width:860px;margin:0 auto}
+.dlbox{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center}
+.dlbox .os{font-size:26px}
+.dlbox h3{font-size:18px}
+.dlbox p{color:var(--muted);font-size:13.5px;min-height:40px}
+.dlbox .btn{width:100%}
+.soon{opacity:.75}
+.soon .btn{background:var(--card);border:1px dashed var(--line);color:var(--muted);cursor:default}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:34px 0;text-align:center;color:var(--muted);font-size:14px}
+footer a{color:var(--orange2)}
+.foot-brand{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;color:var(--text);margin-bottom:8px}
+.foot-brand img{width:22px;height:22px;border-radius:6px}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#"><img src="assets/icon512.png" alt="Madingo"><span>Mading<span class="dot">o</span></span></a>
+    <nav class="links">
+      <a href="#features" data-i18n="nav_features">المميزات</a>
+      <a href="#how" data-i18n="nav_how">كيف يعمل</a>
+      <a href="#download" data-i18n="nav_dl">تحميل</a>
+    </nav>
+    <button class="langbtn" id="langBtn" onclick="setLang(next)">Русский</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="bg"></div>
+  <div class="wrap">
+    <img class="emblem" src="assets/icon512.png" alt="Madingo">
+    <h1 data-i18n="h1">حوّل محاضرتك إلى <span class="hl">مسابقة</span> في ثوانٍ</h1>
+    <p class="sub" data-i18n="sub">Madingo منصة تفاعلية لطلاب МАДИ: الذكاء الاصطناعي يحوّل أي محاضرة أو نص إلى أسئلة اختبار، وتتنافس مع زملائك مباشرة في غرف Arena.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#download" data-i18n="cta_dl">حمّل التطبيق</a>
+      <a class="btn btn-ghost" href="https://cheerful-crepe-ec6334.netlify.app" target="_blank" rel="noopener" data-i18n="cta_web">افتح النسخة الويب</a>
+    </div>
+    <div class="badges">
+      <span class="badge" data-i18n="b1">مجاني بالكامل</span>
+      <span class="badge" data-i18n="b2">بدون تسجيل معقد</span>
+      <span class="badge" data-i18n="b3">يعمل في متصفحك</span>
+      <span class="badge" data-i18n="b4">من طلاب МАДИ</span>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="center">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="f_eyebrow">المميزات</span>
+    <h2 data-i18n="f_h">كل ما تحتاجه للمراجعة الذكية</h2>
+    <p class="lead" data-i18n="f_lead">من نص المحاضرة إلى مسابقة جماعية، دون أي خطوات زائدة.</p>
+    <div class="grid reveal">
+      <div class="card"><div class="ico">🤖</div><h3 data-i18n="f1t">أسئلة بالذكاء الاصطناعي</h3><p data-i18n="f1p">ألصق أي نص أو محاضرة، ويبني الذكاء الاصطناعي أسئلة اختيار من متعدد فوراً.</p></div>
+      <div class="card"><div class="ico">🏆</div><h3 data-i18n="f2t">مسابقات مباشرة Arena</h3><p data-i18n="f2p">أنشئ غرفة، شارك الرمز مع زملائك، وتنافسوا في الوقت الحقيقي.</p></div>
+      <div class="card"><div class="ico">⚡</div><h3 data-i18n="f3t">دخول سريع</h3><p data-i18n="f3p">بدون تسجيل معقد: أدخل اسمك وابدأ خلال ثوانٍ.</p></div>
+      <div class="card"><div class="ico">🆓</div><h3 data-i18n="f4t">مجاني وفي متصفحك</h3><p data-i18n="f4p">لا رسوم ولا تنزيل إجباري: يعمل من أي متصفح، مجاناً للطلاب.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="center" style="background:var(--navy2)">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="h_eyebrow">كيف يعمل</span>
+    <h2 data-i18n="h_h">أربع خطوات فقط</h2>
+    <p class="lead" data-i18n="h_lead">جاهز للعب قبل أن تفتح دفترك.</p>
+    <div class="steps reveal" style="margin-top:36px">
+      <div class="step"><h3 data-i18n="s1t">افتح التطبيق</h3><p data-i18n="s1p">من المتصفح أو من التطبيق المثبت.</p></div>
+      <div class="step"><h3 data-i18n="s2t">ألصق النص</h3><p data-i18n="s2p">محاضرة، ملخص، أو أي مادة تريد مراجعتها.</p></div>
+      <div class="step"><h3 data-i18n="s3t">ولّد الأسئلة</h3><p data-i18n="s3p">الذكاء الاصطناعي يستخرج أسئلة الاختبار تلقائياً.</p></div>
+      <div class="step"><h3 data-i18n="s4t">أنشئ غرفة Arena</h3><p data-i18n="s4p">شارك الرمز مع زملائك وابدأوا المسابقة.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="center">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="g_eyebrow">من داخل التطبيق</span>
+    <h2 data-i18n="g_h">قصة МАدي في كل زاوية</h2>
+    <p class="lead" data-i18n="g_lead">مبنية من طلاب МАДИ، لطلاب МАДИ.</p>
+    <div class="strip reveal">
+      <figure><img src="assets/story1.webp" alt="Madingo story" loading="lazy"></figure>
+      <figure><img src="assets/story2.webp" alt="Madingo story" loading="lazy"></figure>
+      <figure><img src="assets/story3.webp" alt="Madingo story" loading="lazy"></figure>
+      <figure><img src="assets/story4.webp" alt="Madingo story" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section id="download" class="center" style="background:var(--navy2)">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="d_eyebrow">تحميل</span>
+    <h2 data-i18n="d_h">ابدأ الآن مجاناً</h2>
+    <p class="lead" data-i18n="d_lead">اختر نسختك، وستكون داخل أول مسابقة خلال دقيقة.</p>
+    <div class="dl reveal">
+      <div class="dlbox">
+        <div class="os">🌐</div><h3 data-i18n="d1t">النسخة الويب</h3><p data-i18n="d1p">تعمل فوراً من أي متصفح، على الهاتف والحاسوب.</p>
+        <a class="btn btn-primary" href="https://cheerful-crepe-ec6334.netlify.app" target="_blank" rel="noopener" data-i18n="d1b">افتح الآن</a>
+      </div>
+      <div class="dlbox">
+        <div class="os">📱</div><h3 data-i18n="d2t">iOS — v1.1</h3><p data-i18n="d2p">آخر إصدار (24 نوفمبر 2026). ملف .ipa غير موقّع، يتطلب تثبيتاً يدوياً.</p>
+        <a class="btn btn-ghost" href="https://github.com/bskkek/madingo/releases/download/ios-web-v1/Madingo-unsigned.ipa" data-i18n="d2b">تحميل .ipa</a>
+      </div>
+      <div class="dlbox soon">
+        <div class="os">🤖</div><h3 data-i18n="d3t">Android</h3><p data-i18n="d3p">نسخة Android قيد المراجعة في RuStore.</p>
+        <span class="btn" data-i18n="d3b">قريباً</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-brand"><img src="assets/icon512.png" alt="">Madingo</div>
+    <p data-i18n="foot">صُنع بفخر لطلاب МАДИ · <a href="https://t.me/anisse29" target="_blank" rel="noopener">تواصل مع المطوّر</a></p>
+    <p style="margin-top:6px;opacity:.7">© 2026 Aniss Billel</p>
+  </div>
+</footer>
+
+<script>
+const I18N={
+ ar:{dir:"rtl",next:"ru",nav_features:"المميزات",nav_how:"كيف يعمل",nav_dl:"تحميل",
+  h1:'حوّل محاضرتك إلى <span class="hl">مسابقة</span> في ثوانٍ',
+  sub:"Madingo منصة تفاعلية لطلاب МАДИ: الذكاء الاصطناعي يحوّل أي محاضرة أو نص إلى أسئلة اختبار، وتتنافس مع زملائك مباشرة في غرف Arena.",
+  cta_dl:"حمّل التطبيق",cta_web:"افتح النسخة الويب",
+  b1:"مجاني بالكامل",b2:"بدون تسجيل معقد",b3:"يعمل في متصفحك",b4:"من طلاب МАДИ",
+  f_eyebrow:"المميزات",f_h:"كل ما تحتاجه للمراجعة الذكية",f_lead:"من نص المحاضرة إلى مسابقة جماعية، دون أي خطوات زائدة.",
+  f1t:"أسئلة بالذكاء الاصطناعي",f1p:"ألصق أي نص أو محاضرة، ويبني الذكاء الاصطناعي أسئلة اختيار من متعدد فوراً.",
+  f2t:"مسابقات مباشرة Arena",f2p:"أنشئ غرفة، شارك الرمز مع زملائك، وتنافسوا في الوقت الحقيقي.",
+  f3t:"دخول سريع",f3p:"بدون تسجيل معقد: أدخل اسمك وابدأ خلال ثوانٍ.",
+  f4t:"مجاني وفي متصفحك",f4p:"لا رسوم ولا تنزيل إجباري: يعمل من أي متصفح، مجاناً للطلاب.",
+  h_eyebrow:"كيف يعمل",h_h:"أربع خطوات فقط",h_lead:"جاهز للعب قبل أن تفتح دفترك.",
+  s1t:"افتح التطبيق",s1p:"من المتصفح أو من التطبيق المثبت.",s2t:"ألصق النص",s2p:"محاضرة، ملخص، أو أي مادة تريد مراجعتها.",
+  s3t:"ولّد الأسئلة",s3p:"الذكاء الاصطناعي يستخرج أسئلة الاختبار تلقائياً.",s4t:"أنشئ غرفة Arena",s4p:"شارك الرمز مع زملائك وابدأوا المسابقة.",
+  g_eyebrow:"من داخل التطبيق",g_h:"قصة МАДИ في كل زاوية",g_lead:"مبنية من طلاب МАДИ، لطلاب МАДИ.",
+  d_eyebrow:"تحميل",d_h:"ابدأ الآن مجاناً",d_lead:"اختر نسختك، وستكون داخل أول مسابقة خلال دقيقة.",
+  d1t:"النسخة الويب",d1p:"تعمل فوراً من أي متصفح، على الهاتف والحاسوب.",d1b:"افتح الآن",
+  d2t:"iOS — v1.1",d2p:"آخر إصدار (24 نوفمبر 2026). ملف .ipa غير موقّع، يتطلب تثبيتاً يدوياً.",d2b:"تحميل .ipa",
+  d3t:"Android",d3p:"نسخة Android قيد المراجعة في RuStore.",d3b:"قريباً",
+  foot:'صُنع بفخر لطلاب МАДИ · <a href="https://t.me/anisse29" target="_blank" rel="noopener">تواصل مع المطوّر</a>'},
+ ru:{dir:"ltr",next:"ar",nav_features:"Возможности",nav_how:"Как работает",nav_dl:"Скачать",
+  h1:'Превратите лекцию в <span class="hl">квиз</span> за секунды',
+  sub:"Madingo — интерактивная платформа для студентов МАДИ: ИИ превращает любую лекцию или текст в тест, а живые квизы Arena собирают вашу группу.",
+  cta_dl:"Скачать приложение",cta_web:"Открыть веб-версию",
+  b1:"Полностью бесплатно",b2:"Без сложной регистрации",b3:"Работает в браузере",b4:"Сделано студентами МАДИ",
+  f_eyebrow:"Возможности",f_h:"Всё для умной подготовки",f_lead:"От текста лекции до группового квиза — без лишних шагов.",
+  f1t:"Вопросы с помощью ИИ",f1p:"Вставьте любой текст или лекцию — ИИ мгновенно создаёт тест с вариантами ответов.",
+  f2t:"Живые квизы Arena",f2p:"Создайте комнату, поделитесь кодом с одногруппниками и соревнуйтесь в реальном времени.",
+  f3t:"Быстрый вход",f3p:"Без сложной регистрации: имя — и вы в игре.",
+  f4t:"Бесплатно и в браузере",f4p:"Без оплаты и обязательной установки: работает в любом браузере, бесплатно для студентов.",
+  h_eyebrow:"Как работает",h_h:"Всего четыре шага",h_lead:"Вы в игре раньше, чем откроете конспект.",
+  s1t:"Откройте приложение",s1p:"В браузере или из установленного приложения.",s2t:"Вставьте текст",s2p:"Лекцию, конспект или любой материал.",
+  s3t:"Сгенерируйте вопросы",s3p:"ИИ автоматически создаст вопросы теста.",s4t:"Создайте комнату Arena",s4p:"Поделитесь кодом с одногруппниками и начните.",
+  g_eyebrow:"Внутри приложения",g_h:"История МАДИ в каждой детали",g_lead:"Сделано студентами МАДИ для студентов МАДИ.",
+  d_eyebrow:"Скачать",d_h:"Начните бесплатно",d_lead:"Выберите свою версию — и через минуту вы в первом квизе.",
+  d1t:"Веб-версия",d1p:"Работает сразу в любом браузере, на телефоне и компьютере.",d1b:"Открыть",
+  d2t:"iOS — v1.1",d2p:"Последняя версия (24 ноября 2026). Файл .ipa без подписи, требует ручной установки.",d2b:"Скачать .ipa",
+  d3t:"Android",d3p:"Версия для Android на проверке в RuStore.",d3b:"Скоро",
+  foot:'Сделано с гордостью для студентов МАДИ · <a href="https://t.me/anisse29" target="_blank" rel="noopener">Связаться с разработчиком</a>'}
+};
+let cur="ar",next="ru";
+function setLang(l){
+  cur=l;next=I18N[l].next;
+  const d=I18N[l].dir;
+  document.documentElement.lang=l;document.documentElement.dir=d;
+  document.title=l==="ru"?"Madingo — интерактивная викторин-платформа для студентов МАДИ":"Madingo — منصة المسابقات التفاعلية لطلاب МАДИ";
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const v=I18N[l][el.dataset.i18n];if(v!=null)el.innerHTML=v;
+  });
+  document.getElementById("langBtn").textContent=l==="ar"?"Русский":"العربية";
+}
+setLang((navigator.language||"ar").toLowerCase().startsWith("ru")?"ru":"ar");
+document.getElementById("langBtn").onclick=()=>setLang(next);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
